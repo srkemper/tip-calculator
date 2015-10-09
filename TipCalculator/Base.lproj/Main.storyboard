@@ -127,12 +127,31 @@
                                     <action selector="changeDefault:" destination="fTX-iB-T2g" eventType="valueChanged" id="v8c-WE-zUk"/>
                                 </connections>
                             </segmentedControl>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Invert Colors" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="LmM-rS-FgC">
+                                <rect key="frame" x="72" y="194" width="176" height="21"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0002771235064" green="0.2415996815" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" id="YLu-Fz-RP7">
+                                <rect key="frame" x="136" y="223" width="51" height="31"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="tintColor" red="0.0002771235064" green="0.2415996815" blue="0.33333333329999998" alpha="1" colorSpace="calibratedRGB"/>
+                                <color key="onTintColor" red="0.45098039215686275" green="0.62352941176470589" blue="0.73333333333333328" alpha="1" colorSpace="calibratedRGB"/>
+                                <connections>
+                                    <action selector="invertColors:" destination="fTX-iB-T2g" eventType="valueChanged" id="8Tf-ep-UH7"/>
+                                </connections>
+                            </switch>
                         </subviews>
                         <color key="backgroundColor" red="0.52156862745098043" green="0.68627450980392157" blue="0.7803921568627451" alpha="1" colorSpace="calibratedRGB"/>
                     </view>
                     <navigationItem key="navigationItem" id="WTa-pt-WZn"/>
                     <connections>
                         <outlet property="defaultTipControl" destination="yIB-ah-fYO" id="N3x-IE-JnE"/>
+                        <outlet property="defaultTipLabel" destination="Gho-hs-ZHe" id="9lK-xn-rZs"/>
+                        <outlet property="invertLabel" destination="LmM-rS-FgC" id="9mC-Nc-PvZ"/>
+                        <outlet property="invertSwitch" destination="YLu-Fz-RP7" id="Ve5-XI-meE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YCb-Mr-8kZ" userLabel="First Responder" sceneMemberID="firstResponder"/>

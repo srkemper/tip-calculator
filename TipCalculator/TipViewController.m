@@ -8,6 +8,9 @@
 
 #import "TipViewController.h"
 
+#define lightColor [UIColor colorWithRed:133.0/255 green:175.0/255 blue:199.0/255 alpha:1];
+#define darkColor [UIColor colorWithRed:0 green:62.0/255 blue:85.0/255 alpha:1];
+
 @interface TipViewController ()
 @property (weak, nonatomic) IBOutlet UITextField *billTextField;
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
@@ -46,6 +49,11 @@
     if ([defaults objectForKey:@"defaultTipSelection"]) {
         self.tipControl.selectedSegmentIndex = [defaults integerForKey:@"defaultTipSelection"];
     }
+    if ([defaults boolForKey:@"invertColors"]) {
+        [self setDarkColorScheme];
+    } else {
+        [self setLightColorScheme];
+    }
 }
 
 - (void)didReceiveMemoryWarning {
@@ -79,6 +87,30 @@
     [defaults setObject:date forKey:@"dateLastOpen"];
     [defaults setObject:self.billTextField.text forKey:@"billTextField"];
     [defaults synchronize];
+}
+
+- (void)setLightColorScheme {
+    self.billTextField.textColor = darkColor;
+    self.billTextField.tintColor = darkColor;
+    self.dividerLine.backgroundColor = darkColor;
+    self.plusLabel.textColor = darkColor;
+    self.equalsLabel.textColor = darkColor;
+    self.tipLabel.textColor = darkColor;
+    self.totalLabel.textColor = darkColor;
+    self.tipControl.tintColor = darkColor;
+    self.view.backgroundColor = lightColor;
+}
+
+- (void)setDarkColorScheme {
+    self.billTextField.textColor = lightColor;
+    self.billTextField.tintColor = lightColor;
+    self.dividerLine.backgroundColor = lightColor;
+    self.plusLabel.textColor = lightColor;
+    self.equalsLabel.textColor = lightColor;
+    self.tipLabel.textColor = lightColor;
+    self.totalLabel.textColor = lightColor;
+    self.tipControl.tintColor = lightColor;
+    self.view.backgroundColor = darkColor;
 }
 
 @end
