@@ -13,6 +13,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *tipLabel;
 @property (weak, nonatomic) IBOutlet UILabel *totalLabel;
 @property (weak, nonatomic) IBOutlet UISegmentedControl *tipControl;
+@property (weak, nonatomic) IBOutlet UILabel *equalsLabel;
+@property (weak, nonatomic) IBOutlet UILabel *plusLabel;
+@property (weak, nonatomic) IBOutlet UIView *dividerLine;
 
 @end
 
@@ -20,7 +23,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"Tip Calculator";
+    [self.billTextField becomeFirstResponder];
+    self.title = @"Tippy";
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    if ([defaults objectForKey:@"dateLastOpen"]) {
+        NSDate *now = [NSDate date];
+        NSDate *then = [defaults objectForKey:@"dateLastOpen"];
+        NSTimeInterval secondsSinceClose = [then timeIntervalSinceDate:now];
+        if (secondsSinceClose < 60 * 10) { //if seconds < 600 (10 minutes)
+            self.billTextField.text = [defaults stringForKey:@"billTextField"];
+        }
+    }
+    [self updateValues];
+}
+
+- (IBAction)textValueChanged:(UITextField *)sender {
     [self updateValues];
 }
 
@@ -36,11 +53,6 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)OnTap:(UITapGestureRecognizer *)sender {
-    [self.view endEditing:true];
-    [self updateValues];
-}
-
 - (IBAction)onValueChanged:(UISegmentedControl *)sender {
     [self updateValues];
 }
@@ -52,8 +64,21 @@
     float tipAmount = [tipValues[self.tipControl.selectedSegmentIndex] floatValue] * billAmount;
     float totalAmount = billAmount + tipAmount;
     
-    self.tipLabel.text = [NSString stringWithFormat:@"$%0.2f", tipAmount];
-    self.totalLabel.text = [NSString stringWithFormat:@"$%0.2f", totalAmount];
+    NSNumberFormatter *numberFormatter = [[NSNumberFormatter alloc] init];
+    [numberFormatter setNumberStyle: NSNumberFormatterCurrencyStyle];
+    
+    self.tipLabel.text = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:tipAmount]];
+    self.totalLabel.text = [numberFormatter stringFromNumber:[NSNumber numberWithFloat:totalAmount]];
+//    self.tipLabel.text = [NSString stringWithFormat:@"$%0.2f", tipAmount];
+//    self.totalLabel.text = [NSString stringWithFormat:@"$%0.2f", totalAmount];
+}
+
+- (void)viewWillDisappear:(BOOL)animated {
+    NSDate *date = [NSDate date];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:date forKey:@"dateLastOpen"];
+    [defaults setObject:self.billTextField.text forKey:@"billTextField"];
+    [defaults synchronize];
 }
 
 @end

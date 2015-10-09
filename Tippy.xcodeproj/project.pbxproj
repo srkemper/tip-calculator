@@ -118,7 +118,7 @@
 					};
 				};
 			};
-			buildConfigurationList = F964811F1BC7434F007919F7 /* Build configuration list for PBXProject "TipCalculator" */;
+			buildConfigurationList = F964811F1BC7434F007919F7 /* Build configuration list for PBXProject "Tippy" */;
 			compatibilityVersion = "Xcode 3.2";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
@@ -290,7 +290,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		F964811F1BC7434F007919F7 /* Build configuration list for PBXProject "TipCalculator" */ = {
+		F964811F1BC7434F007919F7 /* Build configuration list for PBXProject "Tippy" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				F96481391BC7434F007919F7 /* Debug */,
